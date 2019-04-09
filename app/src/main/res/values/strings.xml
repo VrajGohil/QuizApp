@@ -3,4 +3,6 @@
     <string name="name">Name</string>
     <string name="scores">Scores</string>
     <string name="play">Play</string>
+    <string name="questions">Questions</string>
+    <string name="textview">textview</string>
 </resources>

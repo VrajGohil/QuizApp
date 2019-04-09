@@ -18,7 +18,10 @@
         </activity>
         <activity
             android:name=".ScoreActivity"
-            android:label="Score"></activity>
+            android:label="Score" />
+        <activity
+            android:name=".PlayActivity"
+            android:label="Play"></activity>
     </application>
 
 </manifest>
