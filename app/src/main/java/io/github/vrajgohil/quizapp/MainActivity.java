@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import io.realm.Realm;
+
 public class MainActivity extends AppCompatActivity{
 
     @Override
@@ -29,5 +31,6 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(playIntent);
             }
         });
+        Realm.init(this);
     }
 }
