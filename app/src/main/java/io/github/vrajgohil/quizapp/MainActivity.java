@@ -31,6 +31,14 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(playIntent);
             }
         });
+        Button addque=(Button)findViewById(R.id.addque);
+        addque.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addIntent=new Intent(MainActivity.this,AddQuestion.class);
+                startActivity(addIntent);
+            }
+        });
         Realm.init(this);
     }
 }

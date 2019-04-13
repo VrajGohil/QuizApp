@@ -10,6 +10,17 @@ public class Questions extends RealmObject {
     private String option4;
     private int answer;
 
+    @Override
+    public String toString() {
+        return "Information{" +
+                "Queston='" + question + '\'' +
+                ", option1='" + option1 + '\'' +
+                ", option2='" + option2 + '\'' +
+                ", option3='" + option3 + '\'' +
+                ", option4='" + option4 + '\'' +
+                ", Answer=" + answer +
+                '}';
+    }
     public void setQuestion(String question) {
         this.question = question;
     }

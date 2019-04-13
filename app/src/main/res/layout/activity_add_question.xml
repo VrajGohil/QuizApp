@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/addquestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter your question"
+        android:inputType="text|textAutoComplete" />
+
+    <EditText
+        android:id="@+id/addanswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter your age"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/addoption1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter option1"
+        android:inputType="text|textAutoCorrect|textAutoComplete" />
+
+    <EditText
+        android:id="@+id/addoption2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter option2"
+        android:inputType="text|textAutoCorrect|textAutoComplete" />
+
+    <EditText
+        android:id="@+id/addoption3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter option3"
+        android:inputType="text|textAutoCorrect|textAutoComplete" />
+
+    <EditText
+        android:id="@+id/addoption4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter option4"
+        android:inputType="text|textAutoCorrect|textAutoComplete" />
+
+
+    <Button
+        android:id="@+id/addbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Question" />
+</LinearLayout>
+

@@ -21,7 +21,10 @@
             android:label="Score" />
         <activity
             android:name=".PlayActivity"
-            android:label="Play"></activity>
+            android:label="Play" />
+        <activity
+            android:name=".AddQuestion"
+            android:label="Add Question"></activity>
     </application>
 
 </manifest>
