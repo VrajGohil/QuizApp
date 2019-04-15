@@ -6,6 +6,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
 
