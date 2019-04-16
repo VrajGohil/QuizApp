@@ -1,17 +1,13 @@
 package io.github.vrajgohil.quizapp;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 public class MainActivity extends AppCompatActivity{
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,15 +37,7 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(addIntent);
             }
         });
-        Realm.init(this);
-        RealmConfiguration realmConfiguration=new RealmConfiguration.Builder()
-                .name("database")
-                .build();
-    }
-    /*
-    static void importFromJson(final Resources resources){
-        Realm realm=Realm.getDefaultInstance();
-        final Realm.TransactionTime transactionTime=new Tr
 
-    }*/
+    }
+
 }
