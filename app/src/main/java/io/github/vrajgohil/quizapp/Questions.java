@@ -1,7 +1,7 @@
 package io.github.vrajgohil.quizapp;
 
 public class Questions {
-    public int q_id;
+    public String q_id;
     public String question;
     public String option1;
     public String option2;
@@ -12,7 +12,7 @@ public class Questions {
     public Questions(){
 
     }
-    public Questions(int q_id,String question,String option1,String option2,String option3,String option4,int answer, int currentState){
+    public Questions(String q_id,String question,String option1,String option2,String option3,String option4,int answer, int currentState){
         this.q_id=q_id;
         this.question=question;
         this.option1=option1;
@@ -47,7 +47,7 @@ public class Questions {
         return answer;
     }
 
-    public int getQ_id() {
+    public String getQ_id() {
         return q_id;
     }
 
@@ -79,7 +79,7 @@ public class Questions {
         this.question = question;
     }
 
-    public void setQ_id(int q_id) {
+    public void setQ_id(String q_id) {
         this.q_id = q_id;
     }
 

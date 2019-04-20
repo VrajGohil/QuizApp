@@ -28,7 +28,7 @@ public class PlayActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference("questions");
         questionList = new ArrayList<>();
         questionView = findViewById(R.id.questionView);
-        questionView.setText(questionList.get(0).getQuestion());
+        questionView.setText(questionList.get(24).getQuestion());
     }
 
     @Override

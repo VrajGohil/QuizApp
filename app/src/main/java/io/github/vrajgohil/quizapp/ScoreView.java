@@ -16,6 +16,7 @@ import java.util.List;
 
 public class ScoreView extends AppCompatActivity {
     ListView listViewScores;
+    FirebaseDatabase database;
     DatabaseReference reference;
     List<Score> scoreList;
     @Override
@@ -23,7 +24,8 @@ public class ScoreView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_view);
         listViewScores= findViewById(R.id.listViewScores);
-        reference =FirebaseDatabase.getInstance().getReference("scores");
+        database =FirebaseDatabase.getInstance();
+        reference=database.getReference().child("scores");
         scoreList=new ArrayList<>();
     }
 
