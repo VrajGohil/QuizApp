@@ -4,6 +4,7 @@ package io.github.vrajgohil.quizapp;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,8 @@ public class PlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play);
         mDatabase = FirebaseDatabase.getInstance().getReference("questions");
         questionList = new ArrayList<>();
-        questionView = (TextView) findViewById(R.id.questionView);
+        questionView = findViewById(R.id.questionView);
+        questionView.setText(questionList.get(0).getQuestion());
     }
 
     @Override
@@ -41,11 +43,11 @@ public class PlayActivity extends AppCompatActivity {
                     questionList.add(q);
                 }
 
-                questionView.setText(questionList.get(0).getQuestion());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Tag", "loadPost:onCancelled", databaseError.toException());
                 Toast.makeText(getApplicationContext(),"Database Error",Toast.LENGTH_LONG).show();
             }
         });

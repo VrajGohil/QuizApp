@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity{
     EditText editTextName;
     DatabaseReference databaseScore;
     Intent playIntent;
+    String scoreId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity{
     private void addName(){
         String name=editTextName.getText().toString().trim();
         if(!TextUtils.isEmpty(name)){
-            String scoreId=databaseScore.push().getKey();
+            scoreId=databaseScore.push().getKey();
             Score score=new Score(scoreId,name,0);
             databaseScore.child(scoreId).setValue(score);
             Toast.makeText(this,"Name Added Successfully!",Toast.LENGTH_SHORT).show();
@@ -63,5 +64,6 @@ public class MainActivity extends AppCompatActivity{
             Toast.makeText(this,"Enter name to play!",Toast.LENGTH_LONG).show();
         }
     }
+
 
 }
