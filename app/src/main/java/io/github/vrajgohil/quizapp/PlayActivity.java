@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,13 +19,14 @@ public class PlayActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private ArrayList<Questions> questionList;
+    private TextView questionView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
         mDatabase = FirebaseDatabase.getInstance().getReference("questions");
         questionList = new ArrayList<>();
-
+        questionView = (TextView) findViewById(R.id.questionView);
     }
 
     @Override
@@ -38,13 +40,13 @@ public class PlayActivity extends AppCompatActivity {
                     Questions q=questionSnapshot.getValue(Questions.class);
                     questionList.add(q);
                 }
-                TextView questionView = (TextView) findViewById(R.id.questionView);
-                questionView.setText(questionList.get(0).question);
+
+                questionView.setText(questionList.get(0).getQuestion());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(getApplicationContext(),"Database Error",Toast.LENGTH_LONG).show();
             }
         });
     }
