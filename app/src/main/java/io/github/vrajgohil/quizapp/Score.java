@@ -24,4 +24,16 @@ public class Score {
     public int getScoreValue() {
         return scoreValue;
     }
+
+    public void setScoreId(String scoreId) {
+        this.scoreId = scoreId;
+    }
+
+    public void setScoreName(String scoreName) {
+        this.scoreName = scoreName;
+    }
+
+    public void setScoreValue(int scoreValue) {
+        this.scoreValue = scoreValue;
+    }
 }

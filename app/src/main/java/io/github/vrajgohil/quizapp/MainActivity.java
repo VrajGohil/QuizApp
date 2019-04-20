@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity{
     EditText editTextName;
     DatabaseReference databaseScore;
+    Intent playIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity{
         score.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent scoreIntent=new Intent(MainActivity.this,ScoreActivity.class);
+                Intent scoreIntent=new Intent(MainActivity.this,ScoreView.class);
                 startActivity(scoreIntent);
             }
         });
@@ -35,9 +36,8 @@ public class MainActivity extends AppCompatActivity{
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent playIntent=new Intent(MainActivity.this,PlayActivity.class);
+                playIntent=new Intent(MainActivity.this,PlayActivity.class);
                 addName();
-                startActivity(playIntent);
             }
         });
         Button addque=(Button)findViewById(R.id.addque);
@@ -56,10 +56,11 @@ public class MainActivity extends AppCompatActivity{
             String scoreId=databaseScore.push().getKey();
             Score score=new Score(scoreId,name,0);
             databaseScore.child(scoreId).setValue(score);
-            Toast.makeText(this,"Name add",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Name Added Successfully!",Toast.LENGTH_SHORT).show();
+            startActivity(playIntent);
         }
         else{
-            Toast.makeText(this,"You should enter a name",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Enter name to play!",Toast.LENGTH_LONG).show();
         }
     }
 

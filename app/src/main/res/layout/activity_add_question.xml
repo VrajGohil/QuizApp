@@ -9,15 +9,17 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Enter your question"
-        android:inputType="text|textAutoComplete" />
+        android:inputType="text|textAutoComplete"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/addanswer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Enter your age"
-        android:inputType="number" />
+        android:hint="Enter answer option number "
+        android:inputType="number"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/addoption1"
@@ -25,7 +27,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Enter option1"
-        android:inputType="text|textAutoCorrect|textAutoComplete" />
+        android:inputType="text|textAutoCorrect|textAutoComplete"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/addoption2"

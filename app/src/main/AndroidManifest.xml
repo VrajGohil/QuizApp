@@ -17,14 +17,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ScoreActivity"
-            android:label="Score" />
-        <activity
             android:name=".PlayActivity"
             android:label="Play" />
         <activity
             android:name=".AddQuestion"
-            android:label="Add Question"></activity>
+            android:label="Add Question" />
+        <activity
+            android:name=".ScoreView"
+            android:label="Scores"></activity>
     </application>
 
 </manifest>
