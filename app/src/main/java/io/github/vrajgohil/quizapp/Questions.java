@@ -7,12 +7,12 @@ public class Questions {
     public String option2;
     public String option3;
     public String option4;
-    public int answer;
-    public int currentState;
+    public String answer;
+    public String state;
     public Questions(){
 
     }
-    public Questions(String q_id,String question,String option1,String option2,String option3,String option4,int answer, int currentState){
+    public Questions(String q_id,String question,String option1,String option2,String option3,String option4,String answer, String currentState){
         this.q_id=q_id;
         this.question=question;
         this.option1=option1;
@@ -20,7 +20,7 @@ public class Questions {
         this.option3=option3;
         this.option4=option4;
         this.answer=answer;
-        this.currentState=currentState;
+        this.state =currentState;
     }
 
     public String getQuestion() {
@@ -43,7 +43,7 @@ public class Questions {
         return option1;
     }
 
-    public int getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 
@@ -51,8 +51,8 @@ public class Questions {
         return q_id;
     }
 
-    public int getCurrentState() {
-        return currentState;
+    public String getState() {
+        return state;
     }
 
     public void setOption4(String option4) {
@@ -71,7 +71,7 @@ public class Questions {
         this.option1 = option1;
     }
 
-    public void setAnswer(int answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 
@@ -83,7 +83,7 @@ public class Questions {
         this.q_id = q_id;
     }
 
-    public void setCurrentState(int currentState) {
-        this.currentState = currentState;
+    public void setState(String state) {
+        this.state = state;
     }
 }

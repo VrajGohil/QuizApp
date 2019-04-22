@@ -44,14 +44,14 @@ public class AddQuestion extends AppCompatActivity {
     }
     private void addQuestions(){
         String question=addQuestion.getText().toString().trim();
-        int answer=Integer.parseInt(addAnswer.getText().toString().trim());
+        String answer=addAnswer.getText().toString().trim();
         String option1=addOption1.getText().toString().trim();
         String option2=addOption2.getText().toString().trim();
         String option3=addOption3.getText().toString().trim();
         String option4=addOption4.getText().toString().trim();
-        if(!TextUtils.isEmpty(question) && answer>=1 && answer<=4 && !TextUtils.isEmpty(option1) && !TextUtils.isEmpty(option2) && !TextUtils.isEmpty(option3) && !TextUtils.isEmpty(option4)){
+        if(!TextUtils.isEmpty(question) && !TextUtils.isEmpty(answer) && Integer.parseInt(answer)>=1 && Integer.parseInt(answer)<=4 && !TextUtils.isEmpty(option1) && !TextUtils.isEmpty(option2) && !TextUtils.isEmpty(option3) && !TextUtils.isEmpty(option4)){
             q_id=questionDatabase.push().getKey();
-            Questions Q=new Questions(q_id,question,option1,option2,option3,option4,answer,0);
+            Questions Q=new Questions(q_id,question,option1,option2,option3,option4,answer,String.valueOf(0));
             questionDatabase.child(q_id).setValue(Q);
             Toast.makeText(this,"Question Added!",Toast.LENGTH_LONG).show();
         }

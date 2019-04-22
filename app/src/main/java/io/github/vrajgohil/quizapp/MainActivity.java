@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity{
         String name=editTextName.getText().toString().trim();
         if(!TextUtils.isEmpty(name)){
             scoreId=databaseScore.push().getKey();
-            Score score=new Score(scoreId,name,0);
+            Score score=new Score(scoreId,name,String.valueOf(0));
             databaseScore.child(scoreId).setValue(score);
             Toast.makeText(this,"Name Added Successfully!",Toast.LENGTH_SHORT).show();
             startActivity(playIntent);

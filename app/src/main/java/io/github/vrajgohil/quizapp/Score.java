@@ -3,11 +3,11 @@ package io.github.vrajgohil.quizapp;
 public class Score {
     String scoreId;
     String scoreName;
-    int scoreValue;
+    String scoreValue;
     public Score(){
 
     }
-    public Score(String scoreId, String scoreName, int scoreValue) {
+    public Score(String scoreId, String scoreName, String scoreValue) {
         this.scoreId = scoreId;
         this.scoreName = scoreName;
         this.scoreValue = scoreValue;
@@ -21,7 +21,7 @@ public class Score {
         return scoreName;
     }
 
-    public int getScoreValue() {
+    public String getScoreValue() {
         return scoreValue;
     }
 
@@ -33,7 +33,7 @@ public class Score {
         this.scoreName = scoreName;
     }
 
-    public void setScoreValue(int scoreValue) {
+    public void setScoreValue(String scoreValue) {
         this.scoreValue = scoreValue;
     }
 }

@@ -6,18 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".PlayActivity">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:background="@color/colorOption"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/textview"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
+    <Button
+        android:id="@+id/buttonOption4"
+        android:layout_width="187dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="39dp"
+        android:text="OPTION4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonOption3"
+        app:layout_constraintTop_toBottomOf="@+id/buttonOption2" />
+
+    <Button
+        android:id="@+id/buttonOption3"
+        android:layout_width="187dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="39dp"
+        android:text="OPTION3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonOption4"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonOption1" />
+
+    <Button
+        android:id="@+id/buttonOption2"
+        android:layout_width="187dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="16dp"
+        android:text="OPTION2"
+        app:layout_constraintBottom_toTopOf="@+id/buttonOption4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonOption1"
         app:layout_constraintTop_toBottomOf="@+id/progressBar3" />
 
     <TextView
@@ -51,43 +76,31 @@
         tools:foregroundTint="@color/colorPrimaryDark"
         tools:visibility="visible" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="6dp"
-        android:text="@string/textview"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
+    <Button
+        android:id="@+id/buttonOption1"
+        android:layout_width="187dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="5dp"
+        android:text="Option1"
+        app:layout_constraintBottom_toTopOf="@+id/buttonOption3"
+        app:layout_constraintEnd_toStartOf="@+id/buttonOption2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar3" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginBottom="117dp"
-        android:text="@string/textview"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="117dp"
-        android:text="@string/textview"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/textViewTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="176dp"
+        android:layout_marginBottom="37dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/buttonOption2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar3" />
 
 </android.support.constraint.ConstraintLayout>
