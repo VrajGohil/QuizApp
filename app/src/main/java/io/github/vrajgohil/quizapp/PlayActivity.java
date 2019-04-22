@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 
 public class PlayActivity extends AppCompatActivity {
 
@@ -36,6 +37,9 @@ public class PlayActivity extends AppCompatActivity {
     int total=0;
     int correct=0;
     int wrong=0;
+    Random random;
+    int randomNumber;
+    private ArrayList<Integer> randomCheck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,10 @@ public class PlayActivity extends AppCompatActivity {
         buttonOption2.setBackgroundColor(Color.parseColor("#03A9F4"));
         buttonOption3.setBackgroundColor(Color.parseColor("#03A9F4"));
         buttonOption4.setBackgroundColor(Color.parseColor("#03A9F4"));
+        randomCheck=new ArrayList<>();
+        randomCheck.clear();
+
+        random=new Random();
 
         /*mDatabase = FirebaseDatabase.getInstance().getReference("questions");
         questionList = new ArrayList<>();
@@ -61,20 +69,22 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private void updateQuestions() {
-        total++;
-        if(total>5){
-            Intent intent=new Intent(PlayActivity.this,ResultActivity.class);
-            intent.putExtra("total",String.valueOf(total));
-            intent.putExtra("correct",String.valueOf(correct));
-            intent.putExtra("wrong",String.valueOf(wrong));
-            startActivity(intent);
-        }
-        else{
-            reference=FirebaseDatabase.getInstance().getReference().child("questions").child(String.valueOf(total));
+        randomNumber = random.nextInt(24);
+        if (!randomCheck.contains(randomNumber)) {
+            total++;
+            randomCheck.add(randomNumber);
+            if (total > 10) {
+                Intent intent = new Intent(PlayActivity.this, ResultActivity.class);
+                intent.putExtra("total", String.valueOf(total));
+                intent.putExtra("correct", String.valueOf(correct));
+                intent.putExtra("wrong", String.valueOf(wrong));
+                startActivity(intent);
+            } else {
+            reference = FirebaseDatabase.getInstance().getReference().child("questions").child(String.valueOf(randomNumber));
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    final Questions question=dataSnapshot.getValue(Questions.class);
+                    final Questions question = dataSnapshot.getValue(Questions.class);
 
                     questionView.setText(question.getQuestion());
                     buttonOption1.setText(question.getOption1());
@@ -85,7 +95,7 @@ public class PlayActivity extends AppCompatActivity {
                     buttonOption1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(buttonOption1.getText().toString().equals(question.getAnswer())) {
+                            if (buttonOption1.getText().toString().equals(question.getAnswer())) {
                                 buttonOption1.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
@@ -97,17 +107,14 @@ public class PlayActivity extends AppCompatActivity {
 
                                     }
                                 }, 1500);
-                            }
-                            else{
+                            } else {
                                 wrong++;
                                 buttonOption1.setBackgroundColor(Color.RED);
-                                if(buttonOption2.getText().toString().equals(question.getAnswer())){
+                                if (buttonOption2.getText().toString().equals(question.getAnswer())) {
                                     buttonOption2.setBackgroundColor(Color.GREEN);
-                                }
-                                else if(buttonOption3.getText().toString().equals(question.getAnswer())){
+                                } else if (buttonOption3.getText().toString().equals(question.getAnswer())) {
                                     buttonOption3.setBackgroundColor(Color.GREEN);
-                                }
-                                else if(buttonOption4.getText().toString().equals(question.getAnswer())){
+                                } else if (buttonOption4.getText().toString().equals(question.getAnswer())) {
                                     buttonOption4.setBackgroundColor(Color.GREEN);
                                 }
                                 Handler handler = new Handler();
@@ -130,7 +137,7 @@ public class PlayActivity extends AppCompatActivity {
                     buttonOption2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(buttonOption2.getText().toString().equals(question.getAnswer())) {
+                            if (buttonOption2.getText().toString().equals(question.getAnswer())) {
                                 buttonOption2.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
@@ -142,17 +149,14 @@ public class PlayActivity extends AppCompatActivity {
 
                                     }
                                 }, 1500);
-                            }
-                            else{
+                            } else {
                                 wrong++;
                                 buttonOption2.setBackgroundColor(Color.RED);
-                                if(buttonOption1.getText().toString().equals(question.getAnswer())){
+                                if (buttonOption1.getText().toString().equals(question.getAnswer())) {
                                     buttonOption1.setBackgroundColor(Color.GREEN);
-                                }
-                                else if(buttonOption3.getText().toString().equals(question.getAnswer())){
+                                } else if (buttonOption3.getText().toString().equals(question.getAnswer())) {
                                     buttonOption3.setBackgroundColor(Color.GREEN);
-                                }
-                                else if(buttonOption4.getText().toString().equals(question.getAnswer())){
+                                } else if (buttonOption4.getText().toString().equals(question.getAnswer())) {
                                     buttonOption4.setBackgroundColor(Color.GREEN);
                                 }
                                 Handler handler = new Handler();
@@ -174,7 +178,7 @@ public class PlayActivity extends AppCompatActivity {
                     buttonOption3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(buttonOption3.getText().toString().equals(question.getAnswer())) {
+                            if (buttonOption3.getText().toString().equals(question.getAnswer())) {
                                 buttonOption3.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
@@ -186,17 +190,14 @@ public class PlayActivity extends AppCompatActivity {
 
                                     }
                                 }, 1500);
-                            }
-                            else{
+                            } else {
                                 wrong++;
                                 buttonOption3.setBackgroundColor(Color.RED);
-                                if(buttonOption1.getText().toString().equals(question.getAnswer())){
+                                if (buttonOption1.getText().toString().equals(question.getAnswer())) {
                                     buttonOption1.setBackgroundColor(Color.GREEN);
-                                }
-                                else if(buttonOption2.getText().toString().equals(question.getAnswer())){
+                                } else if (buttonOption2.getText().toString().equals(question.getAnswer())) {
                                     buttonOption2.setBackgroundColor(Color.GREEN);
-                                }
-                                else if(buttonOption4.getText().toString().equals(question.getAnswer())){
+                                } else if (buttonOption4.getText().toString().equals(question.getAnswer())) {
                                     buttonOption4.setBackgroundColor(Color.GREEN);
                                 }
                                 Handler handler = new Handler();
@@ -218,7 +219,7 @@ public class PlayActivity extends AppCompatActivity {
                     buttonOption4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(buttonOption4.getText().toString().equals(question.getAnswer())) {
+                            if (buttonOption4.getText().toString().equals(question.getAnswer())) {
                                 buttonOption4.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
@@ -230,17 +231,14 @@ public class PlayActivity extends AppCompatActivity {
 
                                     }
                                 }, 1500);
-                            }
-                            else{
+                            } else {
                                 wrong++;
                                 buttonOption4.setBackgroundColor(Color.RED);
-                                if(buttonOption1.getText().toString().equals(question.getAnswer())){
+                                if (buttonOption1.getText().toString().equals(question.getAnswer())) {
                                     buttonOption1.setBackgroundColor(Color.GREEN);
-                                }
-                                else if(buttonOption2.getText().toString().equals(question.getAnswer())){
+                                } else if (buttonOption2.getText().toString().equals(question.getAnswer())) {
                                     buttonOption2.setBackgroundColor(Color.GREEN);
-                                }
-                                else if(buttonOption3.getText().toString().equals(question.getAnswer())){
+                                } else if (buttonOption3.getText().toString().equals(question.getAnswer())) {
                                     buttonOption3.setBackgroundColor(Color.GREEN);
                                 }
                                 Handler handler = new Handler();
@@ -266,7 +264,12 @@ public class PlayActivity extends AppCompatActivity {
 
                 }
             });
+            }
         }
+        else{
+            updateQuestions();
+        }
+
 
     }
     public void reverseTimer(int seconds, final TextView tv){
@@ -275,7 +278,8 @@ public class PlayActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 int seconds =(int)(millisUntilFinished/1000);
                 int minutes=seconds/60;
-                tv.setText(String.format("%02d",minutes)+":"+String.format("02d",seconds));
+                //tv.setText(String.format("%02d",minutes)+":"+String.format("02d",seconds));
+                tv.setText(String.valueOf(minutes)+":"+String.valueOf(seconds));
             }
 
             @Override
@@ -294,7 +298,7 @@ public class PlayActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         updateQuestions();
-        reverseTimer(30,TimerView);
+        reverseTimer(60,TimerView);
     }
 
 
