@@ -25,7 +25,9 @@
         <activity
             android:name=".ScoreView"
             android:label="Scores" />
-        <activity android:name=".ResultActivity"></activity>
+        <activity
+            android:name=".ResultActivity"
+            android:label="Results"></activity>
     </application>
 
 </manifest>

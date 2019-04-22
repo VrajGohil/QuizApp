@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,37 +12,47 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="496dp"
         android:text="Total Questions" />
 
     <TextView
         android:id="@+id/textViewTotalValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewTotal"
         android:layout_alignBottom="@+id/textViewTotal"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="52dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="293dp"
+        android:layout_marginBottom="-36dp"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/textViewCorrect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textViewTotal"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="247dp"
-        android:text="Correct" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="326dp"
+        android:layout_marginEnd="147dp"
+        android:text="Your Score!"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
     <TextView
         android:id="@+id/textViewCorrectValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textViewCorrect"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="49dp"
-        android:layout_marginBottom="2dp"
-        android:text="TextView" />
+        android:layout_marginStart="163dp"
+        android:layout_marginEnd="157dp"
+        android:layout_marginBottom="-33dp"
+        android:text="TextView"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
     <TextView
         android:id="@+id/textViewWrong"
@@ -49,7 +60,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textViewTotal"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="202dp"
+        android:layout_marginStart="248dp"
+        android:layout_marginBottom="81dp"
         android:text="Incorrect" />
 
     <TextView
@@ -58,6 +70,16 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textViewWrong"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="41dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="67dp"
         android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="87dp"
+        app:srcCompat="@mipmap/logo" />
 </RelativeLayout>
