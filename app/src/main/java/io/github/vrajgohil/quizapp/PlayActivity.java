@@ -8,11 +8,11 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,19 +25,20 @@ import java.util.Random;
 
 public class PlayActivity extends AppCompatActivity {
 
-    private ArrayList<Questions> questionList;
     private TextView questionView;
     private Button buttonOption1;
     private Button buttonOption2;
     private Button buttonOption3;
     private Button buttonOption4;
     private TextView TimerView;
+    private ProgressBar progressBar;
     DatabaseReference reference;
     int total=0;
     int correct=0;
     int wrong=0;
     Random random;
     int randomNumber;
+    int seconds;
     private ArrayList<Integer> randomCheck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class PlayActivity extends AppCompatActivity {
         buttonOption3=findViewById(R.id.buttonOption3);
         buttonOption4=findViewById(R.id.buttonOption4);
         TimerView=findViewById(R.id.textViewTimer);
+        progressBar=findViewById(R.id.progressBarTimer);
 
         buttonOption1.setBackgroundColor(Color.parseColor("#03A9F4"));
         buttonOption2.setBackgroundColor(Color.parseColor("#03A9F4"));
@@ -60,9 +62,6 @@ public class PlayActivity extends AppCompatActivity {
 
         random=new Random();
 
-        /*mDatabase = FirebaseDatabase.getInstance().getReference("questions");
-        questionList = new ArrayList<>();
-        questionView.setText(questionList.get(24).getQuestion());*/
 
 
     }
@@ -72,6 +71,7 @@ public class PlayActivity extends AppCompatActivity {
         if (!randomCheck.contains(randomNumber)) {
             total++;
             randomCheck.add(randomNumber);
+            progressBar.setProgress(0);
             if (total > 10) {
                 Intent intent = new Intent(PlayActivity.this, ResultActivity.class);
                 intent.putExtra("total", String.valueOf(total));
@@ -279,16 +279,19 @@ public class PlayActivity extends AppCompatActivity {
                 int minutes=seconds/60;
                 //tv.setText(String.format("%02d",minutes)+":"+String.format("02d",seconds));
                 tv.setText(String.valueOf(minutes)+":"+String.valueOf(seconds));
+                progressBar.incrementProgressBy(1);
             }
 
             @Override
             public void onFinish() {
                 tv.setText("Completed");
+
                 Intent intent=new Intent(PlayActivity.this,ResultActivity.class);
                 intent.putExtra("total",String.valueOf(total));
                 intent.putExtra("correct",String.valueOf(correct));
                 intent.putExtra("wrong",String.valueOf(wrong));
                 startActivity(intent);
+                updateQuestions();
             }
         }.start();
     }
@@ -297,7 +300,7 @@ public class PlayActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         updateQuestions();
-        reverseTimer(60,TimerView);
+        reverseTimer(30,TimerView);
     }
 
 

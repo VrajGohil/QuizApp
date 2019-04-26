@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class ScoreList extends ArrayAdapter {
+public class ScoreList extends ArrayAdapter<Score> {
     private Activity context;
     private List<Score> scoreList;
 
     public ScoreList(Activity context, List<Score> scoreList){
-        super(context,R.layout.activity_score);
+        super(context,R.layout.activity_score,scoreList);
         this.context=context;
         this.scoreList=scoreList;
     }

@@ -3,6 +3,7 @@ package io.github.vrajgohil.quizapp;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +31,7 @@ public class ScoreView extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d("Debug","I am here");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -38,12 +40,15 @@ public class ScoreView extends AppCompatActivity {
                     Score score = scoreSnapshot.getValue(Score.class);
                     scoreList.add(score);
                 }
+                Log.d("Debug",scoreList.get(3).getScoreName());
+
                 ScoreList adaptor = new ScoreList(ScoreView.this,scoreList);
                 listViewScores.setAdapter(adaptor);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Database Error",databaseError.toException());
             }
         });
     }

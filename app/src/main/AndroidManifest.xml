@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.github.vrajgohil.quizapp">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,9 +19,6 @@
         <activity
             android:name=".PlayActivity"
             android:label="Play" />
-        <activity
-            android:name=".AddQuestion"
-            android:label="Add Question" />
         <activity
             android:name=".ScoreView"
             android:label="Scores" />

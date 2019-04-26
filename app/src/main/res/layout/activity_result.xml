@@ -60,8 +60,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textViewTotal"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="248dp"
-        android:layout_marginBottom="81dp"
+        android:layout_marginStart="256dp"
+        android:layout_marginBottom="87dp"
         android:text="Incorrect" />
 
     <TextView
@@ -70,8 +70,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textViewWrong"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="67dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="54dp"
         android:text="TextView" />
 
     <ImageView
@@ -82,4 +82,21 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="87dp"
         app:srcCompat="@mipmap/logo" />
+
+    <Button
+        android:id="@+id/buttonToScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="148dp"
+        android:text="Scoreboard" />
+
+    <Button
+        android:id="@+id/buttonPlayAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textViewTotal"
+        android:layout_centerHorizontal="true"
+        android:text="Play Again" />
 </RelativeLayout>
