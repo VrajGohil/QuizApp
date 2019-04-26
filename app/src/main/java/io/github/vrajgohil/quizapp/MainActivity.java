@@ -9,13 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity{
     EditText editTextName;
-    DatabaseReference databaseScore;
     Intent playIntent;
     String scoreId;
     @Override
@@ -23,7 +20,6 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         editTextName=(EditText)findViewById(R.id.editTextName);
-        databaseScore=FirebaseDatabase.getInstance().getReference("scores");
 
         Button score=(Button)findViewById(R.id.button2);
         score.setOnClickListener(new View.OnClickListener() {
@@ -46,10 +42,6 @@ public class MainActivity extends AppCompatActivity{
     private void addName(){
         String name=editTextName.getText().toString().trim();
         if(!TextUtils.isEmpty(name)){
-            scoreId=databaseScore.push().getKey();
-            Score score=new Score(scoreId,name,String.valueOf(0));
-            databaseScore.child(scoreId).setValue(score);
-            playIntent.putExtra("scoreId",scoreId);
             playIntent.putExtra("name",name);
             Toast.makeText(this,"Name Added Successfully!",Toast.LENGTH_SHORT).show();
             startActivity(playIntent);

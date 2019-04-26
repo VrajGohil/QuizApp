@@ -39,6 +39,7 @@ public class PlayActivity extends AppCompatActivity {
     int time;
     Random random;
     int randomNumber;
+    String scoreId;
     CountDownTimer countDownTimer;
 
     private ArrayList<Integer> randomCheck;
@@ -94,6 +95,7 @@ public class PlayActivity extends AppCompatActivity {
             progressBar.setProgress(0);
             countDownTimer.start();
             if (total > 10) {
+                updateScore();
                 Intent intent = new Intent(PlayActivity.this, ResultActivity.class);
                 intent.putExtra("correct", String.valueOf(correct));
                 startActivity(intent);
@@ -289,11 +291,12 @@ public class PlayActivity extends AppCompatActivity {
     }
     public void updateScore(){
         Intent intent=getIntent();
-        final String scoreId=intent.getStringExtra("scoreId");
         final String name=intent.getStringExtra("name");
-        DatabaseReference scoreReference=FirebaseDatabase.getInstance().getReference().child("score");
+        DatabaseReference scoreReference=FirebaseDatabase.getInstance().getReference().child("scores");
+        scoreId=scoreReference.push().getKey();
         Score score= new Score(scoreId,name,String.valueOf(correct));
         scoreReference.child(scoreId).setValue(score);
+        Log.d("Debug",score.scoreId);
     }
 
 
@@ -302,7 +305,6 @@ public class PlayActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         updateQuestions();
-        updateScore();
     }
 
 
