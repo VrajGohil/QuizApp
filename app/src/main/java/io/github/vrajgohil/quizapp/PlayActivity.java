@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -35,10 +36,11 @@ public class PlayActivity extends AppCompatActivity {
     DatabaseReference reference;
     int total=0;
     int correct=0;
-    int wrong=0;
+    int time;
     Random random;
     int randomNumber;
-    int seconds;
+    CountDownTimer countDownTimer;
+
     private ArrayList<Integer> randomCheck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +61,26 @@ public class PlayActivity extends AppCompatActivity {
         buttonOption4.setBackgroundColor(Color.parseColor("#03A9F4"));
         randomCheck=new ArrayList<>();
         randomCheck.clear();
-
         random=new Random();
+
+        Intent passIntent=getIntent();
+        passIntent.getStringExtra("scoreId");
+
+
+        countDownTimer=new CountDownTimer(30000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                int seconds =(int)(millisUntilFinished/1000);
+                time=seconds;
+                TimerView.setText(String.valueOf(seconds));
+                progressBar.incrementProgressBy(1);
+            }
+
+            @Override
+            public void onFinish() {
+                updateQuestions();
+            }
+        };
 
 
 
@@ -72,11 +92,10 @@ public class PlayActivity extends AppCompatActivity {
             total++;
             randomCheck.add(randomNumber);
             progressBar.setProgress(0);
+            countDownTimer.start();
             if (total > 10) {
                 Intent intent = new Intent(PlayActivity.this, ResultActivity.class);
-                intent.putExtra("total", String.valueOf(total));
                 intent.putExtra("correct", String.valueOf(correct));
-                intent.putExtra("wrong", String.valueOf(wrong));
                 startActivity(intent);
             } else {
             reference = FirebaseDatabase.getInstance().getReference().child("questions").child(String.valueOf(randomNumber));
@@ -84,8 +103,7 @@ public class PlayActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     final Questions question = dataSnapshot.getValue(Questions.class);
-
-                    questionView.setText(question.getQuestion());
+                    questionView.setText("Q"+String.valueOf(total)+". "+question.getQuestion());
                     buttonOption1.setText(question.getOption1());
                     buttonOption2.setText(question.getOption2());
                     buttonOption3.setText(question.getOption3());
@@ -94,20 +112,21 @@ public class PlayActivity extends AppCompatActivity {
                     buttonOption1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            countDownTimer.cancel();
                             if (buttonOption1.getText().toString().equals(question.getAnswer())) {
                                 buttonOption1.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        correct++;
+                                        correct+=correct+5*time;
                                         buttonOption1.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         updateQuestions();
 
                                     }
                                 }, 1500);
                             } else {
-                                wrong++;
+
                                 buttonOption1.setBackgroundColor(Color.RED);
                                 if (buttonOption2.getText().toString().equals(question.getAnswer())) {
                                     buttonOption2.setBackgroundColor(Color.GREEN);
@@ -120,7 +139,6 @@ public class PlayActivity extends AppCompatActivity {
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        correct++;
                                         buttonOption1.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         buttonOption2.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         buttonOption3.setBackgroundColor(Color.parseColor("#03A9F4"));
@@ -136,20 +154,21 @@ public class PlayActivity extends AppCompatActivity {
                     buttonOption2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            countDownTimer.cancel();
                             if (buttonOption2.getText().toString().equals(question.getAnswer())) {
                                 buttonOption2.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        correct++;
+                                        correct+=correct+5*time;
                                         buttonOption2.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         updateQuestions();
 
                                     }
                                 }, 1500);
                             } else {
-                                wrong++;
+
                                 buttonOption2.setBackgroundColor(Color.RED);
                                 if (buttonOption1.getText().toString().equals(question.getAnswer())) {
                                     buttonOption1.setBackgroundColor(Color.GREEN);
@@ -162,7 +181,6 @@ public class PlayActivity extends AppCompatActivity {
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        correct++;
                                         buttonOption1.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         buttonOption2.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         buttonOption3.setBackgroundColor(Color.parseColor("#03A9F4"));
@@ -177,20 +195,20 @@ public class PlayActivity extends AppCompatActivity {
                     buttonOption3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            countDownTimer.cancel();
                             if (buttonOption3.getText().toString().equals(question.getAnswer())) {
                                 buttonOption3.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        correct++;
+                                        correct+=correct+5*time;
                                         buttonOption3.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         updateQuestions();
 
                                     }
                                 }, 1500);
                             } else {
-                                wrong++;
                                 buttonOption3.setBackgroundColor(Color.RED);
                                 if (buttonOption1.getText().toString().equals(question.getAnswer())) {
                                     buttonOption1.setBackgroundColor(Color.GREEN);
@@ -203,7 +221,6 @@ public class PlayActivity extends AppCompatActivity {
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        correct++;
                                         buttonOption1.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         buttonOption2.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         buttonOption3.setBackgroundColor(Color.parseColor("#03A9F4"));
@@ -218,20 +235,20 @@ public class PlayActivity extends AppCompatActivity {
                     buttonOption4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            countDownTimer.cancel();
                             if (buttonOption4.getText().toString().equals(question.getAnswer())) {
                                 buttonOption4.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        correct++;
+                                        correct+=correct+5*time;
                                         buttonOption4.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         updateQuestions();
 
                                     }
                                 }, 1500);
                             } else {
-                                wrong++;
                                 buttonOption4.setBackgroundColor(Color.RED);
                                 if (buttonOption1.getText().toString().equals(question.getAnswer())) {
                                     buttonOption1.setBackgroundColor(Color.GREEN);
@@ -244,7 +261,6 @@ public class PlayActivity extends AppCompatActivity {
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        correct++;
                                         buttonOption1.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         buttonOption2.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         buttonOption3.setBackgroundColor(Color.parseColor("#03A9F4"));
@@ -271,36 +287,22 @@ public class PlayActivity extends AppCompatActivity {
 
 
     }
-    public void reverseTimer(int seconds, final TextView tv){
-        new CountDownTimer(seconds*1000+1000,1000){
-            @Override
-            public void onTick(long millisUntilFinished) {
-                int seconds =(int)(millisUntilFinished/1000);
-                int minutes=seconds/60;
-                //tv.setText(String.format("%02d",minutes)+":"+String.format("02d",seconds));
-                tv.setText(String.valueOf(minutes)+":"+String.valueOf(seconds));
-                progressBar.incrementProgressBy(1);
-            }
-
-            @Override
-            public void onFinish() {
-                tv.setText("Completed");
-
-                Intent intent=new Intent(PlayActivity.this,ResultActivity.class);
-                intent.putExtra("total",String.valueOf(total));
-                intent.putExtra("correct",String.valueOf(correct));
-                intent.putExtra("wrong",String.valueOf(wrong));
-                startActivity(intent);
-                updateQuestions();
-            }
-        }.start();
+    public void updateScore(){
+        Intent intent=getIntent();
+        final String scoreId=intent.getStringExtra("scoreId");
+        final String name=intent.getStringExtra("name");
+        DatabaseReference scoreReference=FirebaseDatabase.getInstance().getReference().child("score");
+        Score score= new Score(scoreId,name,String.valueOf(correct));
+        scoreReference.child(scoreId).setValue(score);
     }
+
+
 
     @Override
     protected void onStart() {
         super.onStart();
         updateQuestions();
-        reverseTimer(30,TimerView);
+        updateScore();
     }
 
 

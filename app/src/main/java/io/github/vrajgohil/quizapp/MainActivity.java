@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity{
             scoreId=databaseScore.push().getKey();
             Score score=new Score(scoreId,name,String.valueOf(0));
             databaseScore.child(scoreId).setValue(score);
+            playIntent.putExtra("scoreId",scoreId);
+            playIntent.putExtra("name",name);
             Toast.makeText(this,"Name Added Successfully!",Toast.LENGTH_SHORT).show();
             startActivity(playIntent);
         }

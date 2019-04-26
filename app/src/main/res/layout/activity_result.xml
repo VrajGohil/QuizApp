@@ -7,28 +7,6 @@
     tools:context=".ResultActivity">
 
     <TextView
-        android:id="@+id/textViewTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="496dp"
-        android:text="Total Questions" />
-
-    <TextView
-        android:id="@+id/textViewTotalValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewTotal"
-        android:layout_alignBottom="@+id/textViewTotal"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="293dp"
-        android:layout_marginBottom="-36dp"
-        android:text="TextView" />
-
-    <TextView
         android:id="@+id/textViewCorrect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,26 +32,6 @@
         android:text="TextView"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
-    <TextView
-        android:id="@+id/textViewWrong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textViewTotal"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="256dp"
-        android:layout_marginBottom="87dp"
-        android:text="Incorrect" />
-
-    <TextView
-        android:id="@+id/textViewWrongValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textViewWrong"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="54dp"
-        android:text="TextView" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -87,16 +45,18 @@
         android:id="@+id/buttonToScores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="148dp"
+        android:layout_alignStart="@+id/textViewCorrect"
+        android:layout_alignBottom="@+id/buttonPlayAgain"
+        android:layout_marginStart="80dp"
         android:text="Scoreboard" />
 
     <Button
         android:id="@+id/buttonPlayAgain"
-        android:layout_width="wrap_content"
+        android:layout_width="123dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textViewTotal"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="67dp"
+        android:layout_marginBottom="135dp"
         android:text="Play Again" />
 </RelativeLayout>
