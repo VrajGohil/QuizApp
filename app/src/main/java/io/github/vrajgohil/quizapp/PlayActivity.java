@@ -41,6 +41,7 @@ public class PlayActivity extends AppCompatActivity {
     int randomNumber;
     String scoreId;
     CountDownTimer countDownTimer;
+    boolean checkToUpdate=true;
 
     private ArrayList<Integer> randomCheck;
     @Override
@@ -95,7 +96,11 @@ public class PlayActivity extends AppCompatActivity {
             progressBar.setProgress(0);
             countDownTimer.start();
             if (total > 10) {
-                updateScore();
+                countDownTimer.cancel();
+                if(checkToUpdate){
+                    updateScore();
+                    checkToUpdate=false;
+                }
                 Intent intent = new Intent(PlayActivity.this, ResultActivity.class);
                 intent.putExtra("correct", String.valueOf(correct));
                 startActivity(intent);
