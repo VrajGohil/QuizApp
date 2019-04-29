@@ -1,6 +1,9 @@
 package io.github.vrajgohil.quizapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,11 +17,13 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity{
     EditText editTextName;
     Intent playIntent;
-    String scoreId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        checkConnection();
+
         editTextName=(EditText)findViewById(R.id.editTextName);
 
         Button score=(Button)findViewById(R.id.button2);
@@ -39,6 +44,27 @@ public class MainActivity extends AppCompatActivity{
         });
 
     }
+
+    protected boolean isOnline(){
+        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if(networkInfo!=null && networkInfo.isConnectedOrConnecting()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private void checkConnection() {
+        if(isOnline()){
+            Toast.makeText(this,"Connected to Internet",Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(this,"Please connect to Internet",Toast.LENGTH_LONG).show();
+        }
+    }
+
     private void addName(){
         String name=editTextName.getText().toString().trim();
         if(!TextUtils.isEmpty(name)){
