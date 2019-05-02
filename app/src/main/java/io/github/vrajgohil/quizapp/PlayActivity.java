@@ -1,6 +1,7 @@
 package io.github.vrajgohil.quizapp;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -31,8 +32,8 @@ public class PlayActivity extends AppCompatActivity {
     private Button buttonOption2;
     private Button buttonOption3;
     private Button buttonOption4;
-    private TextView TimerView;
     private ProgressBar progressBar;
+    private ProgressDialog progressDialog;
     DatabaseReference reference;
     int total=0;
     int correct=0;
@@ -54,8 +55,8 @@ public class PlayActivity extends AppCompatActivity {
         buttonOption2=findViewById(R.id.buttonOption2);
         buttonOption3=findViewById(R.id.buttonOption3);
         buttonOption4=findViewById(R.id.buttonOption4);
-        TimerView=findViewById(R.id.textViewTimer);
         progressBar=findViewById(R.id.progressBarTimer);
+        progressDialog = new ProgressDialog(this);
 
         buttonOption1.setBackgroundColor(Color.parseColor("#03A9F4"));
         buttonOption2.setBackgroundColor(Color.parseColor("#03A9F4"));
@@ -74,7 +75,6 @@ public class PlayActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 int seconds =(int)(millisUntilFinished/1000);
                 time=seconds;
-                TimerView.setText(String.valueOf(seconds));
                 progressBar.incrementProgressBy(1);
             }
 
@@ -94,7 +94,7 @@ public class PlayActivity extends AppCompatActivity {
             total++;
             randomCheck.add(randomNumber);
             progressBar.setProgress(0);
-            countDownTimer.start();
+            //countDownTimer.start();
             buttonOption1.setClickable(true);
             buttonOption2.setClickable(true);
             buttonOption3.setClickable(true);
@@ -110,11 +110,15 @@ public class PlayActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             } else {
-            reference = FirebaseDatabase.getInstance().getReference().child("questions").child(String.valueOf(randomNumber));
-            reference.addValueEventListener(new ValueEventListener() {
+                progressDialog.setMessage("Question Loading");
+                progressDialog.show();
+                reference = FirebaseDatabase.getInstance().getReference().child("questions").child(String.valueOf(randomNumber));
+                reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     final Questions question = dataSnapshot.getValue(Questions.class);
+                    progressDialog.dismiss();
+                    countDownTimer.start();
                     questionView.setText("Q"+String.valueOf(total)+". "+question.getQuestion());
                     buttonOption1.setText(question.getOption1());
                     buttonOption2.setText(question.getOption2());
