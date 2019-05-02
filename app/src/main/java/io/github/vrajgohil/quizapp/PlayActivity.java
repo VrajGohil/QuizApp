@@ -95,6 +95,10 @@ public class PlayActivity extends AppCompatActivity {
             randomCheck.add(randomNumber);
             progressBar.setProgress(0);
             countDownTimer.start();
+            buttonOption1.setClickable(true);
+            buttonOption2.setClickable(true);
+            buttonOption3.setClickable(true);
+            buttonOption4.setClickable(true);
             if (total > 10) {
                 countDownTimer.cancel();
                 if(checkToUpdate){
@@ -104,6 +108,7 @@ public class PlayActivity extends AppCompatActivity {
                 Intent intent = new Intent(PlayActivity.this, ResultActivity.class);
                 intent.putExtra("correct", String.valueOf(correct));
                 startActivity(intent);
+                finish();
             } else {
             reference = FirebaseDatabase.getInstance().getReference().child("questions").child(String.valueOf(randomNumber));
             reference.addValueEventListener(new ValueEventListener() {
@@ -120,6 +125,10 @@ public class PlayActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             countDownTimer.cancel();
+                            buttonOption1.setClickable(false);
+                            buttonOption2.setClickable(false);
+                            buttonOption3.setClickable(false);
+                            buttonOption4.setClickable(false);
                             if (buttonOption1.getText().toString().equals(question.getAnswer())) {
                                 buttonOption1.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
@@ -155,6 +164,7 @@ public class PlayActivity extends AppCompatActivity {
                                     }
                                 }, 1500);
                             }
+
                         }
                     });
 
@@ -162,6 +172,10 @@ public class PlayActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             countDownTimer.cancel();
+                            buttonOption1.setClickable(false);
+                            buttonOption2.setClickable(false);
+                            buttonOption3.setClickable(false);
+                            buttonOption4.setClickable(false);
                             if (buttonOption2.getText().toString().equals(question.getAnswer())) {
                                 buttonOption2.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
@@ -203,6 +217,10 @@ public class PlayActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             countDownTimer.cancel();
+                            buttonOption1.setClickable(false);
+                            buttonOption2.setClickable(false);
+                            buttonOption3.setClickable(false);
+                            buttonOption4.setClickable(false);
                             if (buttonOption3.getText().toString().equals(question.getAnswer())) {
                                 buttonOption3.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
@@ -243,6 +261,10 @@ public class PlayActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             countDownTimer.cancel();
+                            buttonOption1.setClickable(false);
+                            buttonOption2.setClickable(false);
+                            buttonOption3.setClickable(false);
+                            buttonOption4.setClickable(false);
                             if (buttonOption4.getText().toString().equals(question.getAnswer())) {
                                 buttonOption4.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();

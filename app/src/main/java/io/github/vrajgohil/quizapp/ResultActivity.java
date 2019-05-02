@@ -47,7 +47,5 @@ public class ResultActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Intent intent=new Intent(ResultActivity.this,MainActivity.class);
-        startActivity(intent);
     }
 }
