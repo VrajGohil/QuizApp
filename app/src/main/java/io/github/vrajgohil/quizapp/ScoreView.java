@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,11 +23,13 @@ public class ScoreView extends AppCompatActivity {
     DatabaseReference reference;
     List<Score> scoreList;
     private ProgressDialog progressDialog;
+    TextView textViewRank;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_view);
         listViewScores= findViewById(R.id.listViewScores);
+        textViewRank=findViewById(R.id.textViewRank);
         reference=FirebaseDatabase.getInstance().getReference().child("scores");
         scoreList=new ArrayList<>();
         progressDialog = new ProgressDialog(this);
@@ -49,6 +52,8 @@ public class ScoreView extends AppCompatActivity {
                 Log.d("Debug",scoreList.get(3).getScoreName());
                 Collections.sort(scoreList, (o2, o1) -> Integer.compare(Integer.parseInt(o1.scoreValue),Integer.parseInt(o2.scoreValue)));
                 progressDialog.dismiss();
+                String rank="Name :"+ scoreList.get(0).getScoreName()+"\nScore :"+scoreList.get(0).getScoreValue();
+                textViewRank.setText(rank);
                 ScoreList adaptor = new ScoreList(ScoreView.this,scoreList);
                 listViewScores.setAdapter(adaptor);
             }
