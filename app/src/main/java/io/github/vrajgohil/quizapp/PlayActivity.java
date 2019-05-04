@@ -1,7 +1,9 @@
 package io.github.vrajgohil.quizapp;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -337,6 +339,23 @@ public class PlayActivity extends AppCompatActivity {
         updateQuestions();
     }
 
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Warning")
+                .setMessage("Are you sure you want to exit the quiz?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        System.exit(0);
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
 
     @Override
     protected void onDestroy() {

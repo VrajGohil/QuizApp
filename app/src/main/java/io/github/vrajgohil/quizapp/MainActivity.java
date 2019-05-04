@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -67,14 +69,22 @@ public class MainActivity extends AppCompatActivity{
 
     private void addName(){
         String name=editTextName.getText().toString().trim();
-        if(!TextUtils.isEmpty(name)){
+        if(!TextUtils.isEmpty(name) && validateLetters(name)){
             playIntent.putExtra("name",name);
             Toast.makeText(this,"Name Added Successfully!",Toast.LENGTH_SHORT).show();
             startActivity(playIntent);
         }
         else{
-            Toast.makeText(this,"Enter name to play!",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Please enter valid name.",Toast.LENGTH_LONG).show();
         }
+    }
+    public static boolean validateLetters(String txt) {
+
+        String regx = "^[a-zA-Z\\s]*$";
+        Pattern pattern = Pattern.compile(regx,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(txt);
+        return matcher.find();
+
     }
 
 
