@@ -1,5 +1,6 @@
 package io.github.vrajgohil.quizapp;
 
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,12 +14,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ScoreView extends AppCompatActivity {
     ListView listViewScores;
     DatabaseReference reference;
     List<Score> scoreList;
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +29,9 @@ public class ScoreView extends AppCompatActivity {
         listViewScores= findViewById(R.id.listViewScores);
         reference=FirebaseDatabase.getInstance().getReference().child("scores");
         scoreList=new ArrayList<>();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Scores Loading");
+        progressDialog.show();
     }
 
     @Override
@@ -41,7 +47,8 @@ public class ScoreView extends AppCompatActivity {
                     scoreList.add(score);
                 }
                 Log.d("Debug",scoreList.get(3).getScoreName());
-
+                Collections.sort(scoreList, (o2, o1) -> Integer.compare(Integer.parseInt(o1.scoreValue),Integer.parseInt(o2.scoreValue)));
+                progressDialog.dismiss();
                 ScoreList adaptor = new ScoreList(ScoreView.this,scoreList);
                 listViewScores.setAdapter(adaptor);
             }

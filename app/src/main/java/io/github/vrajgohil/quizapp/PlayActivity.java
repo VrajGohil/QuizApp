@@ -94,7 +94,6 @@ public class PlayActivity extends AppCompatActivity {
             total++;
             randomCheck.add(randomNumber);
             progressBar.setProgress(0);
-            //countDownTimer.start();
             buttonOption1.setClickable(true);
             buttonOption2.setClickable(true);
             buttonOption3.setClickable(true);
